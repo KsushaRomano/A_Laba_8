@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Laba_8_1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введите коэффициенты первого уравнения: ");
+            int a1 = Convert.ToInt32(Console.ReadLine());
+            int b1 = Convert.ToInt32(Console.ReadLine());
+            int c1 = Convert.ToInt32(Console.ReadLine());
+            int d1 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите коэффициенты второго уравнения: ");
+            int a2 = Convert.ToInt32(Console.ReadLine());
+            int b2 = Convert.ToInt32(Console.ReadLine());
+            int c2 = Convert.ToInt32(Console.ReadLine());
+            int d2 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите коэффициенты третьего уравнения: ");
+            int a3 = Convert.ToInt32(Console.ReadLine());
+            int b3 = Convert.ToInt32(Console.ReadLine());
+            int c3 = Convert.ToInt32(Console.ReadLine());
+            int d3 = Convert.ToInt32(Console.ReadLine());
+
+            double o = a1 * b2 * c3 + a2 * b3 * c1 + a3 * b1 * c2 - (a3 * b2 * c1 + a2 * b1 * c3 + a1 * b3 * c2);
+            double o1 = d1 * b2 * c3 + d2 * b3 * c1 + d3 * b1 * c2 - (d3 * b2 * c1 + d2 * b1 * c3 + d1 * b3 * c2);
+            double o2 = a1 * d2 * c3 + a2 * d3 * c1 + a3 * d1 * c2 - (a3 * d2 * c1 + a2 * d1 * c3 + a1 * d3 * c2);
+            double o3 = a1 * b2 * d3 + a2 * b3 * d1 + a3 * b1 * d2 - (a3 * b2 * d1 + a2 * b1 * d3 + a1 * b3 * d2);
+            double x = o1 / o;
+            double y = o2 / o;
+            double z = o3 / o;
+
+            Console.WriteLine("x = {0}, y = {1}, z = {2}", x, y, z);
+            Console.Read();
+        }
+    }
+}
