@@ -12,6 +12,7 @@ namespace Laba_8_6
         public static TimeSpan Bubble(int[] A){
             Stopwatch sWatch = new Stopwatch();
             TimeSpan k;
+            int l = 0;
             int[] B = new int[A.Length];
             for (int i = 0; i < A.Length; i++) {
                 B[i] = A[i];
@@ -23,6 +24,7 @@ namespace Laba_8_6
                         int p = A[i - 1];
                         A[i - 1] = A[i];
                         A[i] = p;
+                        l++;
                     }
                 }
             }
@@ -32,12 +34,17 @@ namespace Laba_8_6
                 A[i] = B[i];
             }
             k = sWatch.Elapsed;
+            Console.WriteLine("Сортировка Пузырек: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine("Количество итераций - {0}", l);
+            Console.WriteLine();
             return k;
         }
         public static TimeSpan Select(int[] A)
         {
             Stopwatch sWatch = new Stopwatch();
             TimeSpan k;
+            int l = 0;
             int i, j, p, s;
             int[] B = new int[A.Length];
             for (i = 0; i < A.Length; i++)
@@ -53,6 +60,7 @@ namespace Laba_8_6
                     if (A[i] < A[p])
                     {
                         p = i;
+                        l++;
                     }
                 }
                 s = A[j];
@@ -64,13 +72,18 @@ namespace Laba_8_6
             {
                 A[i] = B[i];
             }
-            k = sWatch.Elapsed;
+            k = sWatch.Elapsed; 
+            Console.WriteLine("Сортировка выбором: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine("Количество итераций - {0}", l);
+            Console.WriteLine();
             return k;
         }
         public static TimeSpan Insert(int[] A)
         {
             Stopwatch sWatch = new Stopwatch();
             TimeSpan k;
+            int l = 0;
             int i, j, p;
             int[] B = new int[A.Length];
             for (i = 0; i < A.Length; i++)
@@ -84,6 +97,7 @@ namespace Laba_8_6
                 for (j = i - 1; j >= 0 && A[j] > p; j--)
                 {
                     A[j + 1] = A[j];
+                    l++;
                 }
                 A[j + 1] = p;
             }
@@ -93,12 +107,17 @@ namespace Laba_8_6
                 A[i] = B[i];
             }
             k = sWatch.Elapsed;
+            Console.WriteLine("Сортировка вставками: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine("Количество итераций - {0}", l);
+            Console.WriteLine();
             return k;
         }
         public static TimeSpan Gnome(int[] A)
         {
             Stopwatch sWatch = new Stopwatch();
             TimeSpan k;
+            int l = 0;
             int i, p;
             int[] B = new int[A.Length];
             for (i = 0; i < A.Length; i++)
@@ -117,6 +136,7 @@ namespace Laba_8_6
                     A[i] = A[i - 1];
                     A[i - 1] = p;
                     i--;
+                    l++;
                 }
             }
             sWatch.Stop();
@@ -125,12 +145,17 @@ namespace Laba_8_6
                 A[i] = B[i];
             }
             k = sWatch.Elapsed;
+            Console.WriteLine("Сортировка гномья: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine("Количество итераций - {0}", l);
+            Console.WriteLine();
             return k;
         }
         public static TimeSpan Quick(int[] A, int first, int last)
         {
             Stopwatch sWatch = new Stopwatch();
             TimeSpan k;
+            int l = 0;
             int i, j, p, s;
             int[] B = new int[A.Length];
             for (i = 0; i < A.Length; i++)
@@ -152,6 +177,7 @@ namespace Laba_8_6
                     A[j] = p;
                     i++;
                     j--;
+                    l++;
                 }
             }
             if (j > first)
@@ -171,7 +197,6 @@ namespace Laba_8_6
         }
         static void Main(string[] args)
         {
-            int k1, k2, k3, k4, k5;
             int[] A = new int[1000];
             Random rand = new Random();
             for (int i = 0; i < A.Length; i++)
@@ -189,76 +214,67 @@ namespace Laba_8_6
             for (int i = 0; i < E.Length; i++)
                 E[i] = rand.Next();
 
-            TimeSpan t1, t2, t3, t4, t5;
+            TimeSpan k;
 
             Console.WriteLine("Сортиовка массива на 1000: ");
-            t1 = Bubble(A);
             Console.WriteLine();
-            Console.WriteLine("Сортировка Пузырек - {0}", t1);
-            t2 = Select(A);
-            Console.WriteLine("Сортиовка выбором - {0}", t2);
-            t3 = Insert(A);
-            Console.WriteLine("Сортиовка вставками - {0}", t3);
-            t4 = Gnome(A);
-            Console.WriteLine("Сортиовка гномья - {0}", t4);
-            t5 = Quick(A, 0 , A.Length - 1);
-            Console.WriteLine("Быстрая сортировка - {0}", t5);
+            Console.WriteLine();
+            Bubble(A);
+            Select(A);
+            Insert(A);
+            Gnome(A);
+            k = Quick(A, 0 , A.Length - 1);
+            Console.WriteLine("Быстрая сортировка: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.WriteLine("Сортиовка массива на 10000: ");
-            t1 = Bubble(B);
             Console.WriteLine();
-            Console.WriteLine("Сортировка Пузырек - {0}", t1);
-            t2 = Select(B);
-            Console.WriteLine("Сортиовка выбором - {0}", t2);
-            t3 = Insert(B);
-            Console.WriteLine("Сортиовка вставками - {0}", t3);
-            t4 = Gnome(B);
-            Console.WriteLine("Сортиовка гномья - {0}", t4);
-            t5 = Quick(B, 0, B.Length - 1);
-            Console.WriteLine("Быстрая сортировка - {0}", t5);
+            Bubble(B);
+            Select(B);
+            Insert(B);
+            Gnome(B);
+            k = Quick(B, 0, B.Length - 1);
+            Console.WriteLine("Быстрая сортировка: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.WriteLine("Сортиовка массива на 100000: ");
-            t1 = Bubble(C);
             Console.WriteLine();
-            Console.WriteLine("Сортировка Пузырек - {0}", t1);
-            t2 = Select(C);
-            Console.WriteLine("Сортиовка выбором - {0}", t2);
-            t3 = Insert(C);
-            Console.WriteLine("Сортиовка вставками - {0}", t3);
-            t4 = Gnome(C);
-            Console.WriteLine("Сортиовка гномья - {0}", t4);
-            t5 = Quick(C, 0, C.Length - 1);
-            Console.WriteLine("Быстрая сортировка - {0}", t5);
+            Bubble(C);
+            Select(C);
+            Insert(C);
+            Gnome(C);
+            k = Quick(C, 0, C.Length - 1);
+            Console.WriteLine("Быстрая сортировка: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.WriteLine("Сортиовка массива на 1000000: ");
-            t1 = Bubble(D);
             Console.WriteLine();
-            Console.WriteLine("Сортировка Пузырек - {0}", t1);
-            t2 = Select(D);
-            Console.WriteLine("Сортиовка выбором - {0}", t2);
-            t3 = Insert(D);
-            Console.WriteLine("Сортиовка вставками - {0}", t3);
-            t4 = Gnome(D);
-            Console.WriteLine("Сортиовка гномья - {0}", t4);
-            t5 = Quick(D, 0, D.Length - 1);
-            Console.WriteLine("Быстрая сортировка - {0}", t5);
+            Bubble(D);
+            Select(D);
+            Insert(D);
+            Gnome(D);
+            k = Quick(D, 0, D.Length - 1);
+            Console.WriteLine("Быстрая сортировка: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.WriteLine("Сортиовка массива на 10000000: ");
-            t1 = Bubble(E);
             Console.WriteLine();
-            Console.WriteLine("Сортировка Пузырек - {0}", t1);
-            t2 = Select(E);
-            Console.WriteLine("Сортиовка выбором - {0}", t2);
-            t3 = Insert(E);
-            Console.WriteLine("Сортиовка вставками - {0}", t3);
-            t4 = Gnome(E);
-            Console.WriteLine("Сортиовка гномья - {0}", t4);
-            t5 = Quick(E, 0, E.Length - 1);
-            Console.WriteLine("Быстрая сортировка - {0}", t5);
+            Bubble(E);
+            Select(E);
+            Insert(E);
+            Gnome(E);
+            k = Quick(E, 0, E.Length - 1);
+            Console.WriteLine("Быстрая сортировка: ");
+            Console.WriteLine("Время - {0}", k);
+            Console.WriteLine();
             Console.WriteLine();
 
             Console.Read();
